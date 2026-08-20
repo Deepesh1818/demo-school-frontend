@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-brand-alabaster text-slate-800 font-sans antialiased overflow-x-hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+  }
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.glass-panel-dark {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Luxury card shadow effects */
+.luxury-shadow {
+  box-shadow: 0 10px 30px -10px rgba(10, 15, 29, 0.06), 
+              0 1px 3px rgba(10, 15, 29, 0.02);
+}
+
+.luxury-glow {
+  box-shadow: 0 0 40px rgba(223, 178, 108, 0.15);
+}
+
+/* Hide scrollbar for clean UI elements */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Animated grain filter effect for 3D cinematic depth */
+.bg-grain {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Custom route transition fades */
+.page-transition-enter {
+  opacity: 0;
+  filter: blur(6px);
+}
+.page-transition-enter-active {
+  opacity: 1;
+  filter: blur(0px);
+  transition: opacity 600ms ease-out, filter 600ms ease-out;
+}
+
+/* Custom luxury button dynamic animations */
+button, .btn, a.btn, [role="button"] {
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+button:hover, .btn:hover, a.btn:hover, [role="button"]:hover {
+  transform: translateY(-2.5px) scale(1.025);
+  box-shadow: 0 12px 28px -8px rgba(223, 178, 108, 0.45);
+}
+
+button:active, .btn:active, a.btn:active, [role="button"]:active {
+  transform: translateY(0.5px) scale(0.96);
+}
+
+/* Premium dynamic shine effect keyframes */
+@keyframes shine-glow {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 200%;
+  }
+}
+.animate-shine-glow {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  animation: shine-glow 3.5s infinite ease-in-out;
+}
+
+
+
+/* Global Dashboard Soft Light Theme Overrides */
+.min-h-screen.bg-\[\#f8fafc\] {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+.min-h-screen.bg-\[\#f8fafc\] h1,
+.min-h-screen.bg-\[\#f8fafc\] h2,
+.min-h-screen.bg-\[\#f8fafc\] h3,
+.min-h-screen.bg-\[\#f8fafc\] h4,
+.min-h-screen.bg-\[\#f8fafc\] .font-display {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  color: #0f172a !important;
+}
+
+.min-h-screen.bg-\[\#f8fafc\] div.bg-slate-900,
+.min-h-screen.bg-\[\#f8fafc\] div.bg-slate-950,
+.min-h-screen.bg-\[\#f8fafc\] div.bg-\[\#161d31\],
+.min-h-screen.bg-\[\#f8fafc\] div.bg-\[\#0e1322\],
+.min-h-screen.bg-\[\#f8fafc\] div.bg-\[\#060913\] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #334155 !important;
+}
+
+.min-h-screen.bg-\[\#f8fafc\] .bg-slate-900 shadow-xl,
+.min-h-screen.bg-\[\#f8fafc\] .rounded-xl,
+.min-h-screen.bg-\[\#f8fafc\] .rounded-2xl {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05) !important;
+}
+
+/* Explicit button text visibility styling */
+.min-h-screen.bg-\[\#f8fafc\] button,
+.min-h-screen.bg-\[\#f8fafc\] .btn {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+}
+
+.min-h-screen.bg-\[\#f8fafc\] button *,
+.min-h-screen.bg-\[\#f8fafc\] .btn * {
+  color: #ffffff !important;
+}
+
+/* Allow transparent/secondary styling for buttons */
+.min-h-screen.bg-\[\#f8fafc\] header button,
+.min-h-screen.bg-\[\#f8fafc\] button.bg-slate-50,
+.min-h-screen.bg-\[\#f8fafc\] button.bg-white,
+.min-h-screen.bg-\[\#f8fafc\] button.border-slate-800,
+.min-h-screen.bg-\[\#f8fafc\] button.bg-slate-100 {
+  background-color: #f8fafc !important;
+  color: #334155 !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.min-h-screen.bg-\[\#f8fafc\] header button *,
+.min-h-screen.bg-\[\#f8fafc\] button.bg-slate-50 *,
+.min-h-screen.bg-\[\#f8fafc\] button.bg-white *,
+.min-h-screen.bg-\[\#f8fafc\] button.bg-slate-100 * {
+  color: #334155 !important;
+}
+
+.min-h-screen.bg-\[\#f8fafc\] :not(button):not(.btn):not(span).text-white {
+  color: #0f172a !important;
+}
+
+.min-h-screen.bg-\[\#f8fafc\] .text-slate-400,
+.min-h-screen.bg-\[\#f8fafc\] .text-slate-500 {
+  color: #64748b !important;
+}
+
+.min-h-screen.bg-\[\#f8fafc\] input,
+.min-h-screen.bg-\[\#f8fafc\] select,
+.min-h-screen.bg-\[\#f8fafc\] textarea {
+  background-color: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+.min-h-screen.bg-\[\#f8fafc\] input:focus,
+.min-h-screen.bg-\[\#f8fafc\] select:focus,
+.min-h-screen.bg-\[\#f8fafc\] textarea:focus {
+  border-color: #3b82f6 !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1) !important;
+}
+
+.min-h-screen.bg-\[\#f8fafc\] table {
+  background-color: #ffffff !important;
+}
+
+.min-h-screen.bg-\[\#f8fafc\] table th,
+.min-h-screen.bg-\[\#f8fafc\] thead tr {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+  border-bottom: 2px solid #e2e8f0 !important;
+}
+
+.min-h-screen.bg-\[\#f8fafc\] table td,
+.min-h-screen.bg-\[\#f8fafc\] tbody tr {
+  background-color: #ffffff !important;
+  color: #334155 !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+}
+
+.min-h-screen.bg-\[\#f8fafc\] tbody tr:hover td {
+  background-color: #f8fafc/40 !important;
+}
+
+.min-h-screen.bg-\[\#f8fafc\] aside,
+.min-h-screen.bg-\[\#f8fafc\] aside * {
+  background-color: transparent !important;
+  color: inherit !important;
+  border-color: inherit !important;
+}
+
+.min-h-screen.bg-\[\#f8fafc\] aside {
+  background-color: #ffffff !important;
+  border-right: 1px solid #e2e8f0 !important;
+}
+
+.min-h-screen.bg-\[\#f8fafc\] aside .active {
+  background-color: rgba(59, 130, 246, 0.08) !important;
+  color: #2563eb !important;
+  border-left: 3px solid #2563eb !important;
+}
+
+.min-h-screen.bg-\[\#f8fafc\] aside a:hover {
+  background-color: #f8fafc !important;
+}
+
+.min-h-screen.bg-\[\#f8fafc\] header {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+.min-h-screen.bg-\[\#f8fafc\] header button {
+  background-color: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #475569 !important;
+}
