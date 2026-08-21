@@ -164,16 +164,16 @@ export default function Home() {
                 initial="hidden"
                 animate="visible"
                 variants={containerVariants}
-                className="flex flex-col gap-6 max-w-2xl bg-[#090e1a]/85 p-8 md:p-12 rounded-3xl border border-white/10 backdrop-blur-md pointer-events-auto shadow-[0_0_50px_rgba(0,0,0,0.8)]"
+                className="flex flex-col gap-6 w-full max-w-2xl bg-[#090e1a]/85 p-5 sm:p-8 md:p-12 rounded-3xl border border-white/10 backdrop-blur-md pointer-events-auto shadow-[0_0_50px_rgba(0,0,0,0.8)]"
               >
                 <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 w-fit">
                   <Sparkles className="h-4 w-4 text-brand-gold animate-spin" />
-                  <span className="text-[10px] uppercase tracking-widest text-brand-gold font-sans font-semibold">
+                  <span className="text-[9px] sm:text-[10px] uppercase tracking-widest text-brand-gold font-sans font-semibold">
                     Admissions Now Open • Session 2026-27
                   </span>
                 </motion.div>
                 
-                <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-white via-white to-brand-gold bg-clip-text text-transparent leading-tight font-display tracking-tight">
+                <motion.h1 variants={itemVariants} className="text-3xl sm:text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-white via-white to-brand-gold bg-clip-text text-transparent leading-tight font-display tracking-tight">
                   Where Excellence <br />
                   <span className="text-brand-gold font-serif italic">Becomes</span> Character.
                 </motion.h1>
@@ -182,12 +182,12 @@ export default function Home() {
                   A future-ready learning environment built around academic excellence, character building, curiosity and self-confidence. Guided by CBSE guidelines and state-of-the-art labs.
                 </motion.p>
 
-                <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4 mt-2">
-                  <Link to="/admissions">
-                    <Button variant="secondary" hasShine={true}>Apply for Admission</Button>
+                <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-2 w-full">
+                  <Link to="/admissions" className="w-full sm:w-auto">
+                    <Button variant="secondary" hasShine={true} className="w-full sm:w-auto">Apply for Admission</Button>
                   </Link>
-                  <Link to="/about">
-                    <Button variant="ghost" className="text-white hover:bg-white/5 border border-white/10">
+                  <Link to="/about" className="w-full sm:w-auto">
+                    <Button variant="ghost" className="w-full sm:w-auto text-white hover:bg-white/5 border border-white/10">
                       Explore School
                     </Button>
                   </Link>

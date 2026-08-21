@@ -103,50 +103,52 @@ export default function TeachersList() {
         ) : teachers.length === 0 ? (
           <div className="text-center py-12 text-slate-500 text-xs">No educators registered.</div>
         ) : (
-          <table className="w-full border-collapse text-left text-xs text-slate-300">
-            <thead>
-              <tr className="border-b border-slate-850 text-slate-500 text-[10px] uppercase font-bold tracking-wider">
-                <th className="p-4">Educator Name</th>
-                <th className="p-4">Designation</th>
-                <th className="p-4">Department</th>
-                <th className="p-4">Experience</th>
-                <th className="p-4">Email</th>
-                <th className="p-4 text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-800">
-              {teachers.map((t) => (
-                <tr key={t._id} className="hover:bg-slate-850/30">
-                  <td className="p-4 font-semibold text-slate-800">
-                    <div className="flex items-center gap-2.5">
-                      <img 
-                        src={`https://api.dicebear.com/7.x/initials/svg?seed=${t.name}`} 
-                        alt="Teacher Profile" 
-                        className="h-7 w-7 rounded-full object-cover border border-slate-200/80 bg-slate-50"
-                      />
-                      <span className="text-white">{t.name}</span>
-                    </div>
-                  </td>
-                  <td className="p-4">{t.designation}</td>
-                  <td className="p-4">
-                    <span className="px-2.5 py-0.5 rounded bg-slate-800 text-[10px] text-brand-gold font-bold uppercase">
-                      {t.department}
-                    </span>
-                  </td>
-                  <td className="p-4">{t.experience} Years</td>
-                  <td className="p-4 text-slate-400">{t.email}</td>
-                  <td className="p-4 text-right">
-                    <button
-                      onClick={() => handleDelete(t._id)}
-                      className="p-1.5 rounded hover:bg-slate-800 text-rose-400 hover:text-rose-300 transition-colors"
-                    >
-                      <Trash2 className="h-4.5 w-4.5" />
-                    </button>
-                  </td>
+          <div className="w-full overflow-x-auto -webkit-overflow-scrolling-touch">
+            <table className="w-full min-w-[700px] border-collapse text-left text-xs text-slate-300">
+              <thead>
+                <tr className="border-b border-slate-850 text-slate-500 text-[10px] uppercase font-bold tracking-wider">
+                  <th className="p-4">Educator Name</th>
+                  <th className="p-4">Designation</th>
+                  <th className="p-4">Department</th>
+                  <th className="p-4">Experience</th>
+                  <th className="p-4">Email</th>
+                  <th className="p-4 text-right">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-slate-800">
+                {teachers.map((t) => (
+                  <tr key={t._id} className="hover:bg-slate-850/30">
+                    <td className="p-4 font-semibold text-slate-800">
+                      <div className="flex items-center gap-2.5">
+                        <img 
+                          src={`https://api.dicebear.com/7.x/initials/svg?seed=${t.name}`} 
+                          alt="Teacher Profile" 
+                          className="h-7 w-7 rounded-full object-cover border border-slate-200/80 bg-slate-50"
+                        />
+                        <span className="text-white">{t.name}</span>
+                      </div>
+                    </td>
+                    <td className="p-4">{t.designation}</td>
+                    <td className="p-4">
+                      <span className="px-2.5 py-0.5 rounded bg-slate-800 text-[10px] text-brand-gold font-bold uppercase">
+                        {t.department}
+                      </span>
+                    </td>
+                    <td className="p-4">{t.experience} Years</td>
+                    <td className="p-4 text-slate-400">{t.email}</td>
+                    <td className="p-4 text-right">
+                      <button
+                        onClick={() => handleDelete(t._id)}
+                        className="p-1.5 rounded hover:bg-slate-800 text-rose-400 hover:text-rose-300 transition-colors"
+                      >
+                        <Trash2 className="h-4.5 w-4.5" />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 

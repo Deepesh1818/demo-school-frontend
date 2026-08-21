@@ -156,34 +156,36 @@ export default function LibraryCMS() {
         ) : books.length === 0 ? (
           <div className="text-center py-6 text-slate-500 text-xs">No books in catalog.</div>
         ) : (
-          <table className="w-full border-collapse text-left text-xs text-slate-300">
-            <thead>
-              <tr className="border-b border-slate-850 text-slate-500 text-[10px] uppercase font-bold tracking-wider">
-                <th className="p-4">Title</th>
-                <th className="p-4">Author</th>
-                <th className="p-4">ISBN</th>
-                <th className="p-4">Category</th>
-                <th className="p-4">Stock (Available / Total)</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-800">
-              {books.map((b) => (
-                <tr key={b._id} className="hover:bg-slate-850/30">
-                  <td className="p-4 font-semibold text-white">{b.title}</td>
-                  <td className="p-4">{b.author}</td>
-                  <td className="p-4 font-mono text-slate-500">{b.isbn}</td>
-                  <td className="p-4">
-                    <span className="px-2 py-0.5 rounded bg-slate-800 text-[9px] text-white uppercase tracking-wider font-bold">
-                      {b.category}
-                    </span>
-                  </td>
-                  <td className="p-4 font-semibold text-white">
-                    {b.availableCopies} / {b.totalCopies} Copies
-                  </td>
+          <div className="w-full overflow-x-auto -webkit-overflow-scrolling-touch">
+            <table className="w-full min-w-[700px] border-collapse text-left text-xs text-slate-300">
+              <thead>
+                <tr className="border-b border-slate-850 text-slate-500 text-[10px] uppercase font-bold tracking-wider">
+                  <th className="p-4">Title</th>
+                  <th className="p-4">Author</th>
+                  <th className="p-4">ISBN</th>
+                  <th className="p-4">Category</th>
+                  <th className="p-4">Stock (Available / Total)</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-slate-800">
+                {books.map((b) => (
+                  <tr key={b._id} className="hover:bg-slate-850/30">
+                    <td className="p-4 font-semibold text-white">{b.title}</td>
+                    <td className="p-4">{b.author}</td>
+                    <td className="p-4 font-mono text-slate-500">{b.isbn}</td>
+                    <td className="p-4">
+                      <span className="px-2 py-0.5 rounded bg-slate-800 text-[9px] text-white uppercase tracking-wider font-bold">
+                        {b.category}
+                      </span>
+                    </td>
+                    <td className="p-4 font-semibold text-white">
+                      {b.availableCopies} / {b.totalCopies} Copies
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 
@@ -193,45 +195,47 @@ export default function LibraryCMS() {
         {logs.length === 0 ? (
           <div className="text-center py-6 text-slate-500 text-xs">No active borrow checkouts.</div>
         ) : (
-          <table className="w-full border-collapse text-left text-xs text-slate-300">
-            <thead>
-              <tr className="border-b border-slate-850 text-slate-500 text-[10px] uppercase font-bold tracking-wider">
-                <th className="p-4">Book borrowed</th>
-                <th className="p-4">Student Name</th>
-                <th className="p-4">Issue Date</th>
-                <th className="p-4">Due Date</th>
-                <th className="p-4">Status</th>
-                <th className="p-4 text-right">Return action</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-800">
-              {logs.map((log) => (
-                <tr key={log._id} className="hover:bg-slate-850/30">
-                  <td className="p-4 font-semibold text-white">{log.book?.title}</td>
-                  <td className="p-4">{log.student?.firstName} {log.student?.lastName}</td>
-                  <td className="p-4 text-slate-400">{new Date(log.issueDate).toLocaleDateString()}</td>
-                  <td className="p-4 text-slate-400">{new Date(log.dueDate).toLocaleDateString()}</td>
-                  <td className="p-4">
-                    <span className={`px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider ${
-                      log.status === 'Returned' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-amber-500/10 text-amber-400'
-                    }`}>
-                      {log.status}
-                    </span>
-                  </td>
-                  <td className="p-4 text-right">
-                    {log.status === 'Issued' && (
-                      <button
-                        onClick={() => handleReturnBook(log._id)}
-                        className="py-1 px-2.5 rounded bg-brand-gold hover:bg-brand-goldlight text-brand-navy font-bold uppercase text-[9px] tracking-wide transition-colors"
-                      >
-                        Mark Return
-                      </button>
-                    )}
-                  </td>
+          <div className="w-full overflow-x-auto -webkit-overflow-scrolling-touch">
+            <table className="w-full min-w-[700px] border-collapse text-left text-xs text-slate-300">
+              <thead>
+                <tr className="border-b border-slate-850 text-slate-500 text-[10px] uppercase font-bold tracking-wider">
+                  <th className="p-4">Book borrowed</th>
+                  <th className="p-4">Student Name</th>
+                  <th className="p-4">Issue Date</th>
+                  <th className="p-4">Due Date</th>
+                  <th className="p-4">Status</th>
+                  <th className="p-4 text-right">Return action</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-slate-800">
+                {logs.map((log) => (
+                  <tr key={log._id} className="hover:bg-slate-850/30">
+                    <td className="p-4 font-semibold text-white">{log.book?.title}</td>
+                    <td className="p-4">{log.student?.firstName} {log.student?.lastName}</td>
+                    <td className="p-4 text-slate-400">{new Date(log.issueDate).toLocaleDateString()}</td>
+                    <td className="p-4 text-slate-400">{new Date(log.dueDate).toLocaleDateString()}</td>
+                    <td className="p-4">
+                      <span className={`px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider ${
+                        log.status === 'Returned' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-amber-500/10 text-amber-400'
+                      }`}>
+                        {log.status}
+                      </span>
+                    </td>
+                    <td className="p-4 text-right">
+                      {log.status === 'Issued' && (
+                        <button
+                          onClick={() => handleReturnBook(log._id)}
+                          className="py-1 px-2.5 rounded bg-brand-gold hover:bg-brand-goldlight text-brand-navy font-bold uppercase text-[9px] tracking-wide transition-colors"
+                        >
+                          Mark Return
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 

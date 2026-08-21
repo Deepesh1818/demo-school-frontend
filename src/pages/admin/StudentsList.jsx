@@ -151,48 +151,50 @@ export default function StudentsList() {
         ) : students.length === 0 ? (
           <div className="text-center py-12 text-slate-500 text-xs">No students found.</div>
         ) : (
-          <table className="w-full border-collapse text-left">
-            <thead>
-              <tr className="border-b border-slate-850 text-slate-500 text-[10px] uppercase font-bold tracking-wider">
-                <th className="p-4">Student ID</th>
-                <th className="p-4">Name</th>
-                <th className="p-4">Class</th>
-                <th className="p-4">Roll No.</th>
-                <th className="p-4">Parent Name</th>
-                <th className="p-4">Phone</th>
-                <th className="p-4 text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-800 text-xs text-slate-300">
-              {students.map((s) => (
-                <tr key={s._id} className="hover:bg-slate-800/30">
-                  <td className="p-4 text-brand-gold font-mono">{s.studentId}</td>
-                  <td className="p-4 font-semibold text-slate-800">
-                    <div className="flex items-center gap-2.5">
-                      <img 
-                        src={`https://api.dicebear.com/7.x/initials/svg?seed=${s.firstName}%20${s.lastName}`} 
-                        alt="Student Profile" 
-                        className="h-7 w-7 rounded-full object-cover border border-slate-200/80 bg-slate-50"
-                      />
-                      <span>{s.firstName} {s.lastName}</span>
-                    </div>
-                  </td>
-                  <td className="p-4">{s.class?.name || 'N/A'}</td>
-                  <td className="p-4">{s.rollNumber}</td>
-                  <td className="p-4">{s.parentName}</td>
-                  <td className="p-4">{s.phone}</td>
-                  <td className="p-4 text-right">
-                    <button
-                      onClick={() => handleDelete(s._id)}
-                      className="p-1.5 rounded hover:bg-slate-800 text-rose-400 hover:text-rose-300 transition-colors ml-2"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </button>
-                  </td>
+          <div className="w-full overflow-x-auto -webkit-overflow-scrolling-touch">
+            <table className="w-full min-w-[800px] border-collapse text-left">
+              <thead>
+                <tr className="border-b border-slate-850 text-slate-500 text-[10px] uppercase font-bold tracking-wider">
+                  <th className="p-4">Student ID</th>
+                  <th className="p-4">Name</th>
+                  <th className="p-4">Class</th>
+                  <th className="p-4">Roll No.</th>
+                  <th className="p-4">Parent Name</th>
+                  <th className="p-4">Phone</th>
+                  <th className="p-4 text-right">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-slate-800 text-xs text-slate-300">
+                {students.map((s) => (
+                  <tr key={s._id} className="hover:bg-slate-800/30">
+                    <td className="p-4 text-brand-gold font-mono">{s.studentId}</td>
+                    <td className="p-4 font-semibold text-slate-800">
+                      <div className="flex items-center gap-2.5">
+                        <img 
+                          src={`https://api.dicebear.com/7.x/initials/svg?seed=${s.firstName}%20${s.lastName}`} 
+                          alt="Student Profile" 
+                          className="h-7 w-7 rounded-full object-cover border border-slate-200/80 bg-slate-50"
+                        />
+                        <span className="text-white">{s.firstName} {s.lastName}</span>
+                      </div>
+                    </td>
+                    <td className="p-4">{s.class?.name || 'N/A'}</td>
+                    <td className="p-4">{s.rollNumber}</td>
+                    <td className="p-4">{s.parentName}</td>
+                    <td className="p-4">{s.phone}</td>
+                    <td className="p-4 text-right">
+                      <button
+                        onClick={() => handleDelete(s._id)}
+                        className="p-1.5 rounded hover:bg-slate-800 text-rose-400 hover:text-rose-300 transition-colors ml-2"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 

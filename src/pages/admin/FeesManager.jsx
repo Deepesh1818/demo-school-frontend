@@ -106,58 +106,60 @@ export default function FeesManager() {
         ) : invoices.length === 0 ? (
           <div className="text-center py-12 text-slate-500 text-xs">No fee ledgers generated yet.</div>
         ) : (
-          <table className="w-full border-collapse text-left text-xs text-slate-300 font-sans">
-            <thead>
-              <tr className="border-b border-slate-850 text-slate-500 text-[10px] uppercase font-bold tracking-wider">
-                <th className="p-4">Invoice #</th>
-                <th className="p-4">Student</th>
-                <th className="p-4">Fee Component</th>
-                <th className="p-4">Due Date</th>
-                <th className="p-4">Expected</th>
-                <th className="p-4">Status</th>
-                <th className="p-4 text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-800">
-              {invoices.map((inv) => (
-                <tr key={inv._id} className="hover:bg-slate-850/30">
-                  <td className="p-4 font-mono text-brand-gold">{inv.invoiceNumber}</td>
-                  <td className="p-4">
-                    <span className="block font-semibold text-white">{inv.student?.firstName} {inv.student?.lastName}</span>
-                    <span className="block text-[10px] text-slate-500 font-mono">{inv.student?.studentId}</span>
-                  </td>
-                  <td className="p-4">{inv.feeType}</td>
-                  <td className="p-4 text-slate-400">{new Date(inv.dueDate).toLocaleDateString()}</td>
-                  <td className="p-4 font-semibold text-white">₹{inv.expectedAmount.toLocaleString()}</td>
-                  <td className="p-4">
-                    <span className={`px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider ${
-                      inv.status === 'Paid' ? 'bg-emerald-500/10 text-emerald-400' :
-                      inv.status === 'Overdue' ? 'bg-rose-500/10 text-rose-400' : 'bg-amber-500/10 text-amber-400'
-                    }`}>
-                      {inv.status}
-                    </span>
-                  </td>
-                  <td className="p-4 text-right">
-                    {inv.status !== 'Paid' && (
-                      <button
-                        onClick={() => handleSimulatePayment(inv._id)}
-                        className="py-1 px-2.5 rounded bg-brand-gold hover:bg-brand-goldlight text-brand-navy font-bold uppercase text-[9px] tracking-wide transition-colors"
-                      >
-                        Simulate Pay
-                      </button>
-                    )}
-                  </td>
+          <div className="w-full overflow-x-auto -webkit-overflow-scrolling-touch">
+            <table className="w-full min-w-[750px] border-collapse text-left text-xs text-slate-300 font-sans">
+              <thead>
+                <tr className="border-b border-slate-850 text-slate-500 text-[10px] uppercase font-bold tracking-wider">
+                  <th className="p-4">Invoice #</th>
+                  <th className="p-4">Student</th>
+                  <th className="p-4">Fee Component</th>
+                  <th className="p-4">Due Date</th>
+                  <th className="p-4">Expected</th>
+                  <th className="p-4">Status</th>
+                  <th className="p-4 text-right">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-slate-800">
+                {invoices.map((inv) => (
+                  <tr key={inv._id} className="hover:bg-slate-850/30">
+                    <td className="p-4 font-mono text-brand-gold">{inv.invoiceNumber}</td>
+                    <td className="p-4">
+                      <span className="block font-semibold text-white">{inv.student?.firstName} {inv.student?.lastName}</span>
+                      <span className="block text-[10px] text-slate-500 font-mono">{inv.student?.studentId}</span>
+                    </td>
+                    <td className="p-4">{inv.feeType}</td>
+                    <td className="p-4 text-slate-400">{new Date(inv.dueDate).toLocaleDateString()}</td>
+                    <td className="p-4 font-semibold text-white">₹{inv.expectedAmount.toLocaleString()}</td>
+                    <td className="p-4">
+                      <span className={`px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider ${
+                        inv.status === 'Paid' ? 'bg-emerald-500/10 text-emerald-400' :
+                        inv.status === 'Overdue' ? 'bg-rose-500/10 text-rose-400' : 'bg-amber-500/10 text-amber-400'
+                      }`}>
+                        {inv.status}
+                      </span>
+                    </td>
+                    <td className="p-4 text-right">
+                      {inv.status !== 'Paid' && (
+                        <button
+                          onClick={() => handleSimulatePayment(inv._id)}
+                          className="py-1 px-2.5 rounded bg-brand-gold hover:bg-brand-goldlight text-brand-navy font-bold uppercase text-[9px] tracking-wide transition-colors"
+                        >
+                          Simulate Pay
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 
       {/* Add Invoice Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-slate-950/80 z-50 flex items-center justify-center p-6 backdrop-blur-sm">
-          <div className="bg-slate-900 border border-slate-800 rounded-xl w-full max-w-sm p-8 relative">
+          <div className="bg-slate-900 border border-slate-800 rounded-xl w-full max-w-sm p-8 relative max-h-[90vh] overflow-y-auto no-scrollbar">
             <h3 className="font-bold text-white text-base border-b border-slate-800 pb-3 mb-5 uppercase tracking-wider">
               Generate Student Invoice
             </h3>

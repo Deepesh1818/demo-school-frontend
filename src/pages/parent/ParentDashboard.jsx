@@ -98,7 +98,7 @@ export default function ParentDashboard() {
   const attendanceRate = totalDays ? Math.round((presentDays / totalDays) * 100) : 100;
 
   return (
-    <div className="min-h-screen bg-[#080d1a] text-slate-200 p-6 md:p-12 font-sans relative overflow-hidden">
+    <div className="min-h-screen bg-[#080d1a] text-slate-200 p-4 sm:p-6 md:p-12 font-sans relative overflow-hidden">
       <div className="absolute inset-0 bg-grain opacity-20 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto flex flex-col gap-10 relative z-10">

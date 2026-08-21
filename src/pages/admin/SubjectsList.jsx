@@ -75,35 +75,37 @@ export default function SubjectsList() {
         {loading ? (
           <div className="text-center py-12 text-slate-500 text-xs">Loading records...</div>
         ) : (
-          <table className="w-full border-collapse text-left text-xs text-slate-300">
-            <thead>
-              <tr className="border-b border-slate-850 text-slate-500 text-[10px] uppercase font-bold tracking-wider">
-                <th className="p-4">Subject Name</th>
-                <th className="p-4">Subject Code</th>
-                <th className="p-4">Department</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-800">
-              {subjects.map((s) => (
-                <tr key={s._id} className="hover:bg-slate-850/30">
-                  <td className="p-4 font-semibold text-white">{s.name}</td>
-                  <td className="p-4 font-mono text-brand-gold">{s.code}</td>
-                  <td className="p-4">
-                    <span className="px-2 py-0.5 rounded bg-slate-850 border border-slate-800 text-[10px] text-slate-400 font-medium">
-                      {s.department}
-                    </span>
-                  </td>
+          <div className="w-full overflow-x-auto -webkit-overflow-scrolling-touch">
+            <table className="w-full min-w-[500px] border-collapse text-left text-xs text-slate-300">
+              <thead>
+                <tr className="border-b border-slate-850 text-slate-500 text-[10px] uppercase font-bold tracking-wider">
+                  <th className="p-4">Subject Name</th>
+                  <th className="p-4">Subject Code</th>
+                  <th className="p-4">Department</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-slate-800">
+                {subjects.map((s) => (
+                  <tr key={s._id} className="hover:bg-slate-850/30">
+                    <td className="p-4 font-semibold text-white">{s.name}</td>
+                    <td className="p-4 font-mono text-brand-gold">{s.code}</td>
+                    <td className="p-4">
+                      <span className="px-2 py-0.5 rounded bg-slate-850 border border-slate-800 text-[10px] text-slate-400 font-medium">
+                        {s.department}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 
       {/* Add Subject Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-slate-950/80 z-50 flex items-center justify-center p-6 backdrop-blur-sm">
-          <div className="bg-slate-900 border border-slate-800 rounded-xl w-full max-w-sm p-8 relative">
+          <div className="bg-slate-900 border border-slate-800 rounded-xl w-full max-w-sm p-8 relative max-h-[90vh] overflow-y-auto no-scrollbar">
             <h3 className="font-bold text-white text-base border-b border-slate-800 pb-3 mb-5 uppercase tracking-wider">
               Add Subject Course
             </h3>

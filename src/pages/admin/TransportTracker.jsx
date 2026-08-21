@@ -119,7 +119,7 @@ export default function TransportTracker() {
       {/* Add Route Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-slate-950/80 z-50 flex items-center justify-center p-6 backdrop-blur-sm">
-          <div className="bg-slate-900 border border-slate-800 rounded-xl w-full max-w-md p-8 relative">
+          <div className="bg-slate-900 border border-slate-800 rounded-xl w-full max-w-md p-8 relative max-h-[90vh] overflow-y-auto no-scrollbar">
             <h3 className="font-bold text-white text-base border-b border-slate-800 pb-3 mb-5 uppercase tracking-wider">
               Add Transport Route
             </h3>

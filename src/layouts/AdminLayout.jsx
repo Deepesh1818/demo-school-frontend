@@ -40,7 +40,11 @@ const sidebarLinks = [
 export default function AdminLayout() {
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
+
+  React.useEffect(() => {
+    setIsSidebarCollapsed(window.innerWidth < 768);
+  }, []);
 
   const handleLogout = () => {
     logout();
@@ -51,9 +55,12 @@ export default function AdminLayout() {
     <div className="min-h-screen bg-[#f8fafc] text-slate-800 flex font-sans antialiased overflow-hidden">
       {/* SaaS Sidebar */}
       <aside
-        className={`bg-white border-r border-slate-200 transition-all duration-300 flex flex-col justify-between z-30 ${
-          isSidebarCollapsed ? 'w-20' : 'w-64'
-        }`}
+        className={`bg-white border-r border-slate-200 transition-all duration-300 flex flex-col justify-between z-30 
+          md:relative fixed md:translate-x-0 md:top-0 top-16 md:h-auto h-[calc(100vh-4rem)] shadow-lg md:shadow-none
+          ${isSidebarCollapsed 
+            ? 'w-0 -translate-x-full md:w-20 md:translate-x-0 overflow-hidden' 
+            : 'w-64 translate-x-0'
+          }`}
       >
         <div>
           {/* Sidebar Header Brand (Redirect to Homepage) */}
@@ -114,7 +121,7 @@ export default function AdminLayout() {
       {/* Main Workspace Frame */}
       <div className="flex-grow flex flex-col h-screen overflow-hidden">
         {/* Workspace Topbar Header */}
-        <header className="h-16 border-b border-slate-200 bg-white flex items-center justify-between px-8 flex-shrink-0 z-20 shadow-sm">
+        <header className="h-16 border-b border-slate-200 bg-white flex items-center justify-between px-4 md:px-8 flex-shrink-0 z-20 shadow-sm">
           {/* Collapse toggle */}
           <button
             onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
@@ -143,7 +150,7 @@ export default function AdminLayout() {
         </header>
 
         {/* Dynamic Inner Panel View scroll container */}
-        <main className="flex-grow p-8 overflow-y-auto bg-[#f8fafc] no-scrollbar">
+        <main className="flex-grow p-4 md:p-8 overflow-y-auto bg-[#f8fafc] no-scrollbar">
           <Outlet />
         </main>
       </div>

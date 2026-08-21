@@ -151,7 +151,7 @@ export default function PublicLayout() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-x-0 top-0 bg-brand-navy z-40 pt-24 pb-8 px-6 shadow-2xl border-b border-white/10 lg:hidden"
+            className="fixed inset-0 bg-brand-navy z-40 pt-24 pb-12 px-6 shadow-2xl overflow-y-auto lg:hidden flex flex-col"
           >
             <div className="flex flex-col gap-4">
               {navigationLinks.map((link) => (
